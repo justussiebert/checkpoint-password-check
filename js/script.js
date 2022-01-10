@@ -1,11 +1,7 @@
-//const myForm = document.querySelector(".formX");
 const inputPasswordField1 = document.querySelector("#input-password-1");
 const inputPasswordField2 = document.querySelector("#input-password-2");
 const inputPasswordFields = document.querySelector(".input-password");
 const buttonTogglePassword = document.querySelector("#button-toggle-password");
-
-//const listPasswordsChecks = document.querySelector(".list-checks");
-
 const listItemPasswordsEqual = document.querySelector("#check-passwords-equal");
 const listItemPasswordsLowerCase = document.querySelector(
   "#check-passwords-lower-case"
@@ -17,8 +13,9 @@ const listItemPasswordsNumbers = document.querySelector(
   "#check-passwords-numbers"
 );
 const listItemPasswordsMinLength = document.querySelector(
-  "#check-passwords-min-length"
+  "#check-passwords-characters-min-length"
 );
+const listItemPasswordsAll = document.querySelector("#check-passwords-all");
 
 const state = {
   checkPasswordsEqual: false,
@@ -27,6 +24,7 @@ const state = {
   checkPasswordsNumbers: false,
   checkPasswordsminLength: false,
   PasswordsminLength: 10,
+  textCheckAll: "Mal schauen...",
 };
 
 buttonTogglePassword.addEventListener("click", function (e) {
@@ -56,12 +54,12 @@ buttonTogglePassword.addEventListener("click", function (e) {
 [inputPasswordField1, inputPasswordField2].forEach(function (passwordField) {
   passwordField.addEventListener("input", function (e) {
     //alert(this.value);
-    checkPasswords();
+    checkPasswordsIfEqual();
     renderCheckList();
   });
 });
 
-function checkPasswords() {
+function checkPasswordsIfEqual() {
   //console.log(inputPasswordField1.value.length);
   if (
     inputPasswordField1.value === inputPasswordField2.value &&
@@ -70,6 +68,11 @@ function checkPasswords() {
   ) {
     //console.log("beide gleich und min 1 zeichen");
     state.checkPasswordsEqual = true;
+    checkPasswordsIfLowerCase();
+    checkPasswordsIfUpperCase();
+    checkPasswordsIfNumbers();
+    checkPasswordsLength();
+    checkPasswordsAll();
   } else {
     state.checkPasswordsEqual = false;
     state.checkPasswordsLowerCase = false;
@@ -80,11 +83,90 @@ function checkPasswords() {
   //console.log(state.checkPasswordsEqual);
 }
 
+function checkPasswordsIfLowerCase() {
+  if (/[a-z]/.test(inputPasswordField1.value)) {
+    //alert("Ja, kleinbuchstaben");
+    state.checkPasswordsLowerCase = true;
+  } else {
+    //alert("nein, keine kleinbuchstaben");
+    state.checkPasswordsLowerCase = false;
+  }
+}
+
+function checkPasswordsIfUpperCase() {
+  if (/[A-Z]/.test(inputPasswordField1.value)) {
+    state.checkPasswordsUpperCase = true;
+  } else {
+    state.checkPasswordsUpperCase = false;
+  }
+}
+
+function checkPasswordsIfNumbers() {
+  if (/\d/.test(inputPasswordField1.value)) {
+    //alert("Ja, Zahlen");
+    state.checkPasswordsNumbers = true;
+  } else {
+    //alert("nein, keine zahlen");
+    state.checkPasswordsNumbers = false;
+  }
+}
+
+function checkPasswordsLength() {
+  if (inputPasswordField1.value.length < state.PasswordsminLength) {
+    //alert("nicht lang genug");
+    state.checkPasswordsminLength = false;
+  } else {
+    //alert("lang genug");
+    state.checkPasswordsminLength = true;
+  }
+}
+
 function renderCheckList() {
   if (state.checkPasswordsEqual === true) {
     listItemPasswordsEqual.classList.add("valid");
   } else {
     listItemPasswordsEqual.classList.remove("valid");
+  }
+
+  if (state.checkPasswordsLowerCase === true) {
+    listItemPasswordsLowerCase.classList.add("valid");
+  } else {
+    listItemPasswordsLowerCase.classList.remove("valid");
+  }
+
+  if (state.checkPasswordsUpperCase === true) {
+    listItemPasswordsUpperCase.classList.add("valid");
+  } else {
+    listItemPasswordsUpperCase.classList.remove("valid");
+  }
+
+  if (state.checkPasswordsNumbers === true) {
+    listItemPasswordsNumbers.classList.add("valid");
+  } else {
+    listItemPasswordsNumbers.classList.remove("valid");
+  }
+
+  if (state.checkPasswordsminLength === true) {
+    listItemPasswordsMinLength.classList.add("valid");
+  } else {
+    listItemPasswordsMinLength.classList.remove("valid");
+  }
+  listItemPasswordsAll.innerHTML = state.textCheckAll;
+}
+
+function checkPasswordsAll() {
+  if (
+    state.checkPasswordsEqual === true &&
+    state.checkPasswordsLowerCase === true &&
+    state.checkPasswordsUpperCase === true &&
+    state.checkPasswordsNumbers === true &&
+    state.checkPasswordsminLength === true
+  ) {
+    state.textCheckAll = "Glückwunsch! Super Passwort!";
+    listItemPasswordsAll.classList.add("valid");
+  } else {
+    state.textCheckAll = "Das ist es noch nicht...";
+    listItemPasswordsAll.classList.remove("valid");
   }
 }
 
