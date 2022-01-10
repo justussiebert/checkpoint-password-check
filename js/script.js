@@ -4,6 +4,8 @@ const inputPasswordField2 = document.querySelector("#input-password-2");
 const inputPasswordFields = document.querySelector(".input-password");
 const buttonTogglePassword = document.querySelector("#button-toggle-password");
 
+//const listPasswordsChecks = document.querySelector(".list-checks");
+
 const listItemPasswordsEqual = document.querySelector("#check-passwords-equal");
 const listItemPasswordsLowerCase = document.querySelector(
   "#check-passwords-lower-case"
@@ -55,6 +57,7 @@ buttonTogglePassword.addEventListener("click", function (e) {
   passwordField.addEventListener("input", function (e) {
     //alert(this.value);
     checkPasswords();
+    renderCheckList();
   });
 });
 
@@ -69,6 +72,22 @@ function checkPasswords() {
     state.checkPasswordsEqual = true;
   } else {
     state.checkPasswordsEqual = false;
+    state.checkPasswordsLowerCase = false;
+    state.checkPasswordsUpperCase = false;
+    state.checkPasswordsNumbers = false;
+    state.checkPasswordsminLength = false;
   }
-  console.log(state.checkPasswordsEqual);
+  //console.log(state.checkPasswordsEqual);
 }
+
+function renderCheckList() {
+  if (state.checkPasswordsEqual === true) {
+    listItemPasswordsEqual.classList.add("valid");
+  } else {
+    listItemPasswordsEqual.classList.remove("valid");
+  }
+}
+
+window.onload = function () {
+  renderCheckList();
+};
