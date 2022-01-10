@@ -46,6 +46,17 @@ ul {
   list-style-type: none;
 }
 
+ul.list-checks li {
+}
+ul.list-checks li::after {
+  content: "\2613";
+  color: red;
+}
+ul.list-checks li.valid::after {
+  content: "\2713";
+  color: green;
+}
+
 @media screen and (min-width: 700px) {
   main {
     flex-direction: row;
