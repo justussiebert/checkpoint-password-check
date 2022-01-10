@@ -151,7 +151,7 @@ function renderCheckList() {
   } else {
     listItemPasswordsMinLength.classList.remove("valid");
   }
-  listItemPasswordsAll.innerHTML = state.textCheckAll;
+  listItemPasswordsAll.innerText = state.textCheckAll;
 }
 
 function checkPasswordsAll() {
