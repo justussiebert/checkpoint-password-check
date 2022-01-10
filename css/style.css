@@ -1,3 +1,30 @@
+/* open-sans-regular - latin */
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""),
+    url("../fonts/open-sans-v27-latin-regular.woff2") format("woff2");
+}
+
+/* open-sans-italic - latin */
+@font-face {
+  font-family: "Open Sans";
+  font-style: italic;
+  font-weight: 400;
+  src: local(""),
+    url("../fonts/open-sans-v27-latin-italic.woff2") format("woff2");
+}
+
+/* lobster-regular - latin */
+@font-face {
+  font-family: "Lobster";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""),
+    url("../fonts/lobster-v23-latin-regular.woff2") format("woff2");
+}
+
 html {
   box-sizing: border-box;
 }
@@ -7,28 +34,37 @@ html {
 *:after {
   box-sizing: inherit;
 }
-
+/*
 html,
 body {
   height: 100%;
 }
-
+*/
 body {
   margin: 0;
-  background-color: #fff;
+  background-color: lightsalmon;
+  font-family: "Open Sans", sans-serif;
 }
 h1 {
   text-align: center;
+  margin-top: 0;
+  font-family: "Lobster", cursive;
+  font-size: 12vmin;
+  color: white;
+  text-shadow: 3px 3px #000;
+}
+header {
+  margin-top: 3vmin;
 }
 main {
-  height: 100%;
+  _height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  _align-items: center;
   justify-content: center;
 }
 main section {
-  background-color: #fff;
+  _background-color: #fff;
   padding: 4vmin;
   border-radius: 2vmin;
 }
@@ -44,13 +80,34 @@ footer p {
 
 ul {
   list-style-type: none;
+  margin-top: 0;
+}
+
+input {
+  border: 2px solid #000;
+  border-radius: 2px;
+  line-height: 6vmin;
+  font-size: 2vmin;
+  font-size: 3vmin;
+}
+input[type="button"],
+input[type="submit"] {
+  background-color: #000;
+  color: #fff;
+}
+input[type="text"],
+input[type="password"] {
+  padding: 0 5px 0 5px;
 }
 
 ul.list-checks li {
+  margin-bottom: 2vmin;
 }
 ul.list-checks li::after {
   content: "\2613";
   color: red;
+  font-size: 3vmin;
+  margin-left: 5px;
 }
 ul.list-checks li.valid::after {
   content: "\2713";
