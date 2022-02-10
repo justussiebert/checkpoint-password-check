@@ -81,6 +81,7 @@ function checkPasswordsIfEqual() {
     state.checkPasswordsminLength = false;
   }
   //console.log(state.checkPasswordsEqual);
+  checkPasswordsAll();
 }
 
 function checkPasswordsIfLowerCase() {

@@ -81,6 +81,7 @@ footer p {
 ul {
   list-style-type: none;
   margin-top: 0;
+  padding-left: 0;
 }
 
 input {
@@ -104,7 +105,8 @@ ul.list-checks li {
   margin-bottom: 2vmin;
 }
 ul.list-checks li::after {
-  content: "\2613";
+  _content: "\2613";
+  content: "\2716";
   color: red;
   font-size: 3vmin;
   margin-left: 5px;
@@ -112,6 +114,9 @@ ul.list-checks li::after {
 ul.list-checks li.valid::after {
   content: "\2713";
   color: green;
+}
+#check-passwords-all {
+  font-weight: 700;
 }
 
 @media screen and (min-width: 700px) {
