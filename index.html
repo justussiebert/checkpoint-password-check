@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkpoint: Password check</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Passwort Check</h1>
+    </header>
+    <main>
+      <form action="#" class="formX">
+        <section class="section-inputs-and-button">
+          <input type="password" class="input-password" id="input-password-1" />
+          <input type="password" class="input-password" id="input-password-2" />
+          <input
+            type="submit"
+            id="button-toggle-password"
+            value="Passwort anzeigen"
+          />
+        </section>
+        <section>
+          <ul class="list-checks">
+            <li id="check-passwords-equal">Passwörter sind gleich lang</li>
+            <li id="check-passwords-lower-case">Enthalten Kleinbuchstaben</li>
+            <li id="check-passwords-upper-case">Enthalten Großbuchstaben</li>
+            <li id="check-passwords-numbers">Enthalten Zahlen</li>
+            <li id="check-passwords-characters-min-length">
+              Mindestens 10 Zeichen lang
+            </li>
+            <li id="check-passwords-all"></li>
+          </ul>
+        </section>
+      </form>
+    </main>
+    <script src="js/script.js"></script>
+  </body>
+</html>
